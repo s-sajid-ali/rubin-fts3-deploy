@@ -1,0 +1,67 @@
+# Source: rucio-server/templates/auth_deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usdf-fts3
+  labels:
+    app: usdf-fts3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usdf-fts3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: usdf-fts3
+    spec:
+      volumes:
+        - emptyDir: {}
+          name: fts3containers-volume-1
+        - name: fts3-config-volume 
+          secret:
+            defaultMode: 420
+            secretName: fts3-configs
+        - name: fts3-auth-volume
+          secret:
+            defaultMode: 420
+            secretName: fts3-auth
+        - name: ca-volume
+          secret:
+            secretName: usdf-rucio-ca-bundle-reaper
+      containers:
+        - name: usdf-fts3
+          image: "bjwhitefnal/rubin-fts3:3.12.5"
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 200m
+              memory: 600Mi
+            requests:
+              cpu: 100m
+              memory: 300Mi
+          ports:
+            - name: port-1
+              containerPort: 8446
+              protocol: TCP
+            - name: port-2
+              containerPort: 8449
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /sys/fs/cgroup
+              name: fts3containers-volume-1
+            - mountPath: /tmp/fts3-configs
+              name: fts3-config-volume
+              readOnly: true
+            - mountPath: /tmp/fts3-host-pems
+              name: fts3-auth-volume
+              readOnly: true
+            - name: ca-volume
+              mountPath: /etc/grid-security/certificates
+          #env: {}

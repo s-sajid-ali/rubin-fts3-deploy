@@ -1,0 +1,30 @@
+
+namespace: fts3
+
+resources:
+- ns.yaml
+- service.yaml
+- deployment.yaml
+
+patchesStrategicMerge:
+- grid-certificates-patch.yaml
+- fts3-env-patch.yaml
+
+
+secretGenerator:
+# Config Files 
+- name: fts3-configs
+  files:
+  - fts3config=conf/fts3config
+  - fts3restconfig=conf/fts3restconfig
+  - fts-msg-monitoring.conf=conf/fts-msg-monitoring.conf
+# Service certificate/key
+- name: fts3-auth
+  files:
+  - hostcert.pem=etc/.secrets/fts3-hostcert.pem
+  - hostkey.pem=etc/.secrets/fts3-hostkey.pem
+# Database username/password/connection-string
+- name: fts3-db-auth
+  files:
+  - username=etc/.secrets/fts3db-username
+  - password=etc/.secrets/fts3db-fts3-password

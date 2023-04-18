@@ -1,0 +1,29 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: fts3containers
+    name: usdf-fts3
+  spec:
+    ports:
+    - name: port-1
+      port: 8446
+      protocol: TCP
+      targetPort: 8446
+    - name: port-2
+      port: 8449
+      protocol: TCP
+      targetPort: 8449
+    selector:
+      app: fts3containers
+      deploymentconfig: fts3containers
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

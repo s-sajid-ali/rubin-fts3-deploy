@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: usdf-fts3-server
+  labels:
+    app: fts3-server
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+    - host: rubin-fts3-dev.slac.stanford.edu
+      http:
+        paths:
+          - path: /fts3
+            backend:
+              service:
+                name: usdf-fts3
+                port:
+                  number: 8449
+            pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: usdf-fts3-ui
+  labels:
+    app: fts3-server
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+    - host: rubin-fts3-dev.slac.stanford.edu
+      http:
+        paths:
+          - path: /
+            backend:
+              service:
+                name: usdf-fts3
+                port:
+                  number: 8446
+            pathType: Prefix

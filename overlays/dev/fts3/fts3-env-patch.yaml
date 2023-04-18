@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usdf-fts3
+spec:
+  template:
+    spec:
+      containers:
+      - name: usdf-fts3
+        env:
+        - name: FTS3_DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: fts3-db-auth
+              key: username
+        - name: FTS3_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: fts3-db-auth
+              key: password 
+---
