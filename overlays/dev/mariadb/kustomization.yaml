@@ -26,7 +26,7 @@ configMapGenerator:
         app.kubernetes.io/name: mariadb
         app.kubernetes.io/component: server
     literals:
-      - MARIADB_DATABASE=test
+      - MARIADB_DATABASE=fts3
   - name: mariadb-metrics
     options:
       labels:

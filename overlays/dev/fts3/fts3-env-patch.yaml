@@ -19,4 +19,9 @@ spec:
             secretKeyRef:
               name: fts3-db-auth
               key: password 
+        - name: FTS3_DB_CONNSTR
+          valueFrom:
+            secretKeyRef:
+              name: fts3-db-auth
+              key: connstr
 ---

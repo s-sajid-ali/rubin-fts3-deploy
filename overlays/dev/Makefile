@@ -4,7 +4,7 @@ get-secrets:
 	vault kv get --field=hostkey.pem secret/rubin/usdf-fts3-dev/fts3  > fts3/etc/.secrets/fts3-hostkey.pem
 	vault kv get --field=usdf-fts3db-fts3-password secret/rubin/usdf-fts3-dev/fts3db  > fts3/etc/.secrets/fts3db-fts3-password
 	vault kv get --field=usdf-fts3db-username secret/rubin/usdf-fts3-dev/fts3db  > fts3/etc/.secrets/fts3db-username
-	#vault kv get --field=usdf-fts3db-fts3connstr secret/rubin/usdf-fts3-dev/fts3db  > fts3/etc/.secrets/fts3db-fts3connstr
+	vault kv get --field=usdf-fts3db-fts3connstr secret/rubin/usdf-fts3-dev/fts3db  > fts3/etc/.secrets/fts3db-fts3connstr
 	mkdir -p mariadb/etc/.secrets
 	vault kv get --field=usdf-fts3db-root-password secret/rubin/usdf-fts3-dev/fts3db  > mariadb/etc/.secrets/fts3db-root-password
 	vault kv get --field=usdf-fts3db-fts3-password secret/rubin/usdf-fts3-dev/fts3db  > mariadb/etc/.secrets/fts3db-fts3-password

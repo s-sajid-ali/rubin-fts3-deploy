@@ -28,3 +28,4 @@ secretGenerator:
   files:
   - username=etc/.secrets/fts3db-username
   - password=etc/.secrets/fts3db-fts3-password
+  - connstr=etc/.secrets/fts3db-fts3connstr
