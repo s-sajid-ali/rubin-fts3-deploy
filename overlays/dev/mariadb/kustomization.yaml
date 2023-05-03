@@ -2,10 +2,13 @@ namespace: fts3-db
 
 resources:
   - ns.yaml
-  - service.yaml
-  - fts3-instance.yaml
+  # - service.yaml
+  #- fts3-instance.yaml
+  - fts3-mariadb.yaml
   - fts3-database.yaml
   - fts3-grant.yaml
+  - fts3-user.yaml
+  - mariadb-cm.yaml
 
 configMapGenerator:
   - name: mariadb-config

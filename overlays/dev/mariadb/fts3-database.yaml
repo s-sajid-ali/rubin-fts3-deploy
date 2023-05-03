@@ -1,7 +1,8 @@
 apiVersion: mariadb.mmontes.io/v1alpha1
 kind: Database
 metadata:
-  name: fts3 
+  name: fts3
+  namespace: fts3-db
 spec:
   mariaDbRef:
     name: mariadb
