@@ -11,5 +11,5 @@ spec:
     - "UPDATE"
   database: "fts3"
   table: "*"
-  username: fits 
+  username: fts3
   grantOption: true
