@@ -16,10 +16,10 @@ AuthorizedVO = *
 
 # The alias used for the FTS endpoint
 # Note: will be published in the FTS Transfers Dashboard
-Alias = fts3-public.fnal.gov
+Alias = usdf-fts3-dev.slac.stanford.edu
 
 # Site name running the FTS3 service
-SiteName = FNAL Public FTS3
+SiteName = USDF (Development)
 
 # Inform the REST component whether the Optimizer service is running
 Optimizer = True
@@ -29,7 +29,7 @@ MonitoringMessaging = False
 # Enable or disable publishing of user DNs (recommended false)
 MonitoringPublishDN = False
 
-# Directory where the internal FTS3 messages are written
+# Directory where the internal FTS3 messages are written (Default /var/lib/fts3)
 #MessagingDirectory = /var/lib/fts3
 
 # Interval between heartbeats (measured in seconds)

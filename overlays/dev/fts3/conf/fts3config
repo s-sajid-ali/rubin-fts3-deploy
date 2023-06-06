@@ -20,10 +20,10 @@ DbPassword=${FTS3_DB_PASSWORD}
 DbConnectString=${FTS3_DB_CONNSTR}
 
 #Number of db connections in the pool (use even number, e.g. 2,4,6,8,etc OR 1 for a single connection)
-DbThreadsNum=30
+DbThreadsNum=8
 
 #The alias used for the FTS endpoint, will be published as such in the dashboard transfers UI http://dashb-wlcg-transfers.cern.ch/ui/
-Alias=fts3-public.fnal.gov
+Alias=usdf-fts3-dev.slac.stanford.edu
 
 #Default log directory
 TransferLogDirectory=/var/log/fts3/transfers
@@ -61,7 +61,7 @@ MaxNumberOfProcesses=25000
 ###MaxUrlCopyProcesses=400
 
 # site name
-SiteName=FNAL Public FTS3
+SiteName=USDF (Development)
 
 #Enable/Disable monitoring using messaging monitoring (disabled=false / enabled=true)
 MonitoringMessaging=true
