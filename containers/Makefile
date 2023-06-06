@@ -17,19 +17,19 @@ build-all-nc:
 
 # Image build command definitions
 define build-fts3-cmd =
-docker build --label "maintainer=$(whoami)" -t rubin-fts3 fts3
+podman build --label "maintainer=$(whoami)" -t rubin-fts3 fts3
 endef
 
 define build-fts3-nc-cmd =
-docker build --label "maintainer=$(whoami)" --no-cache -t rubin-fts3 fts3
+podman build --label "maintainer=$(whoami)" --no-cache -t rubin-fts3 fts3
 endef
 
 define build-gridcerts-cmd =
-docker build --label "maintainer=$(whoami)" -t grid-security-files grid-certificates
+podman build --label "maintainer=$(whoami)" -t grid-security-files grid-certificates
 endef
 
 define build-gridcerts-nc-cmd =
-docker build --label "maintainer=$(whoami)" --no-cache -t grid-security-files grid-certificates
+podman build --label "maintainer=$(whoami)" --no-cache -t grid-security-files grid-certificates
 endef
 
 # Image build command declarations
@@ -47,13 +47,13 @@ build-gridcerts-nc:
 
 # Image push command definitions
 define push-fts3-cmd =
-	docker tag rubin-fts3 bjwhitefnal/rubin-fts3:${RUBIN_FTS3_VERSION}
-	docker push bjwhitefnal/rubin-fts3:${RUBIN_FTS3_VERSION}
+	podman tag rubin-fts3 bjwhitefnal/rubin-fts3:${RUBIN_FTS3_VERSION}
+	podman push bjwhitefnal/rubin-fts3:${RUBIN_FTS3_VERSION}
 endef
 
 define push-gridcerts-cmd =
-	docker tag grid-security-files bjwhitefnal/grid-security-files:latest
-	docker push bjwhitefnal/grid-security-files:${RUBIN_FTS3_VERSION}
+	podman tag grid-security-files bjwhitefnal/grid-security-files:latest
+	podman push bjwhitefnal/grid-security-files:${RUBIN_FTS3_VERSION}
 endef
 
 # Image push command declarations

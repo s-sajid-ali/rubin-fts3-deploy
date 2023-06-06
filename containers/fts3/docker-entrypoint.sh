@@ -1,4 +1,5 @@
 #!/bin/bash -e
+set -x
 
 if ! whoami &> /dev/null; then
   if [ -w /etc/passwd ]; then
@@ -40,10 +41,7 @@ else
    echo "${HOSTNAME} ${WEB_INTERFACE}" > /etc/fts3/host_aliases
 fi
 
-fetch-crl
-fts_server
-fts_qos
-fts_msg_bulk
+fetch-crl -v
 httpd
 
 echo 'while true; do sleep 3600; &>/dev/null httpd -k graceful; done' > /root/restart_httpd.sh
