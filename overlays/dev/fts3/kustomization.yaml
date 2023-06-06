@@ -5,6 +5,7 @@ resources:
 - ns.yaml
 - service.yaml
 - deployment.yaml
+- ingress.yaml
 
 patchesStrategicMerge:
 - grid-certificates-patch.yaml
@@ -23,6 +24,10 @@ secretGenerator:
   files:
   - hostcert.pem=etc/.secrets/fts3-hostcert.pem
   - hostkey.pem=etc/.secrets/fts3-hostkey.pem
+- name: fts3-ingress-tls-secret 
+  files:
+  - cert=etc/.secrets/fts3-hostcert.pem
+  - key=etc/.secrets/fts3-hostkey.pem
 # Database username/password/connection-string
 - name: fts3-db-auth
   files:

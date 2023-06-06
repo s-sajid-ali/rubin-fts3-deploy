@@ -9,6 +9,10 @@ spec:
       containers:
       - name: usdf-fts3
         env:
+        #- name: DATABASE_UPGRADE
+        #  value: "yes"
+        - name: WEB_INTERFACE 
+          value: "usdf-fts3-dev.slac.stanford.edu"
         - name: FTS3_DB_USERNAME
           valueFrom:
             secretKeyRef:

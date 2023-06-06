@@ -17,8 +17,7 @@ items:
       protocol: TCP
       targetPort: 8449
     selector:
-      app: fts3containers
-      deploymentconfig: fts3containers
+      app: usdf-fts3
     sessionAffinity: None
     type: ClusterIP
   status:
