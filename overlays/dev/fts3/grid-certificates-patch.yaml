@@ -7,13 +7,8 @@ spec:
     spec:
       initContainers:
       - name: grid-certs
-        #image: slaclab/grid-security-files:latest
-        image: bjwhitefnal/grid-security-files:latest
-        command: 
-        - cp
-        - -a 
-        - /grid-certificates/.
-        - /out/
+        image: slaclab/grid-security-files:latest
+        command: ["/bin/bash", "-c", "chmod 755 /out/ && cp -rv --preserve=links /grid-certificates/* /out/"]
         volumeMounts:
         - name: ca-volume
           mountPath: /out/
