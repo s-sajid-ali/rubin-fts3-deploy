@@ -29,6 +29,15 @@ spec:
     accessModes:
       - ReadWriteOnce
 
+  #https://github.com/mariadb-operator/mariadb-operator/issues/137#issuecomment-1585819345
+  #tls:
+  #  secretRef: # reference to an existing TLS secret
+  #    name: tls
+  #  certificateRef: # reference to a cert-manager Certificate resource
+  #    name: cert
+  #  selfSigned: true # the operator will generate a self-signed certificate
+  #  autoReload: true # reload the StatefulSet whenever the certificate changes
+
   myCnf: |
     [mysqld]
     bind-address=0.0.0.0
