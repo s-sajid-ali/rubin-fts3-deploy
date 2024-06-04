@@ -33,7 +33,7 @@ spec:
 
       containers:
         - name: server
-          image: mariadb:10.11
+          image: mariadb:11.4
           imagePullPolicy: IfNotPresent
 
           env:
