@@ -14,7 +14,7 @@ get-secrets:
 	vault kv get --field=usdf-fts3db-username secret/rubin/usdf-fts3-dev/fts3db  > mariadb/etc/.secrets/fts3db-username
 
 cert-manager:
-	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.14.5/cert-manager.yaml
+	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.0/cert-manager.yaml
 
 # Wait for the cert-manager to be operational before the next target!
 # There is no timeout by default on macos! Do this manually for now instead of make apply
@@ -24,9 +24,10 @@ wait-cert-manager:
 mariadb-operator:
 	helm install mariadb-operator mariadb-operator/mariadb-operator \
 	 --set webhook.cert.certManager.enabled=true \
-	 --set logLevel=Debug \
-	 --namespace mariadb \
-	 --create-namespace
+	 --set logLevel=debug 
+	 #\
+	 #--namespace mariadb \
+	 #--create-namespace
 
 clean-secrets:
 	rm -rf fts3/etc/.secrets mariadb/etc/.secrets
