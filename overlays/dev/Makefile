@@ -1,5 +1,5 @@
 helm:
-	helm repo add mariadb-operator https://mariadb-operator.github.io/mariadb-operator
+	helm repo add mariadb-operator https://helm.mariadb.com/mariadb-operator
 
 get-secrets:
 	mkdir -p fts3/etc/.secrets
