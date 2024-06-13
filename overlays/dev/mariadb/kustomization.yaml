@@ -6,9 +6,9 @@ resources:
   - mariadb-configmap.yaml
   - fts3-mariadb.yaml 
   - fts3-database.yaml 
-  #- fts3-instance.yaml
-  #- fts3-grant.yaml
-  #- fts3-user.yaml
+  - fts3-instance.yaml
+  - fts3-grant.yaml
+  - fts3-user.yaml
 
 configMapGenerator:
   - name: mariadb-config

@@ -8,8 +8,9 @@ spec:
     name: mariadb-admin
     key: password
   
-  database: mariadb
+  database: fts3
   username: mariadb
+  
   passwordSecretKeyRef:
     name: mariadb-user
     key: password

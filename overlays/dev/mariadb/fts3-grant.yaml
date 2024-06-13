@@ -1,0 +1,15 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Grant
+metadata:
+  name: grant
+  namespace: fts3-db
+spec:
+  mariaDbRef:
+    name: mariadb
+    namespace: fts3-db
+  privileges:
+    - "ALL PRIVILEGES"
+  database: "fts3"
+  table: "*"
+  username: fts3
+  grantOption: true

@@ -1,0 +1,14 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: User
+metadata:
+  name: fts3
+  namespace: fts3-db
+spec:
+  mariaDbRef:
+    name: mariadb
+    namespace: fts3-db
+  passwordSecretKeyRef:
+    name: mariadb-user
+    key: password
+  # This field is immutable and defaults to 10
+  maxUserConnections: 20
