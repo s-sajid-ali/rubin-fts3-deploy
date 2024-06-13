@@ -1,3 +1,5 @@
+MARIADB_OPERATOR_CHART_VERSION := 0.29.0
+
 helm:
 	helm repo add mariadb-operator https://helm.mariadb.com/mariadb-operator
 
@@ -22,13 +24,8 @@ wait-cert-manager:
 	timeout 120
 
 mariadb-operator:
-	helm install mariadb-operator mariadb-operator/mariadb-operator \
-	 --set webhook.cert.certManager.enabled=true \
-	 --set logLevel=debug 
-	 #\
-	 #--namespace mariadb \
-	 #--create-namespace
-
+	helm template mariadb-operator mariadb-operator/mariadb-operator --version=${MARIADB_OPERATOR_CHART_VERSION} --values=mariadb-operator/values-mariadb-operator.yaml > mariadb-operator/helm-mariadb-operator.yaml
+	
 clean-secrets:
 	rm -rf fts3/etc/.secrets mariadb/etc/.secrets
 

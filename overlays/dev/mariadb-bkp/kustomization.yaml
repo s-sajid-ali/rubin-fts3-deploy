@@ -1,14 +1,14 @@
 namespace: fts3-db
 
 resources:
-  - ns.yaml   
-  - service.yaml 
-  - mariadb-configmap.yaml
-  - fts3-mariadb.yaml 
-  - fts3-database.yaml 
+  - ns.yaml
+  # - service.yaml
   #- fts3-instance.yaml
-  #- fts3-grant.yaml
-  #- fts3-user.yaml
+  - fts3-mariadb.yaml
+  - fts3-database.yaml
+  - fts3-grant.yaml
+  - fts3-user.yaml
+  - mariadb-cm.yaml
 
 configMapGenerator:
   - name: mariadb-config
@@ -55,3 +55,11 @@ secretGenerator:
     files:
     - password=etc/.secrets/fts3db-fts3-password
     - username=etc/.secrets/fts3db-username
+
+#images:
+#  - name: mariadb-server
+#    newName: library/mariadb
+#    newTag: "10.11.2"
+#  - name: mariadb-metrics
+#    newName: prom/mysqld-exporter
+#    newTag: "v0.14.0"

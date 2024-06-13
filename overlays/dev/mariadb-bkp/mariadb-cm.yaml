@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: mariadb
   namespace: fts3-db
+  labels:
+    k8s.mariadb.com/watch: ""
 data:
   UMASK: "0660"
   UMASK_DIR: "0750"

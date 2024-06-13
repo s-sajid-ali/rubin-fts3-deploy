@@ -1,4 +1,4 @@
-apiVersion: k8s.mariadb.com/v1alpha1
+apiVersion: mariadb.mmontes.io/v1alpha1
 kind: MariaDB
 metadata:
   name: mariadb
@@ -7,26 +7,28 @@ spec:
   rootPasswordSecretKeyRef:
     name: mariadb-admin
     key: password
-  
+
   database: mariadb
   username: mariadb
   passwordSecretKeyRef:
     name: mariadb-user
     key: password
-  
-  image: "mariadb:11.4"
-  
-  port: 3306
-  storage:
-    size: 100Mi
-    storageClassName: wekafs--sdf-k8s01
 
-  service:
-    type: LoadBalancer
-    metadata:
-      annotations:
-        metallb.universe.tf/loadBalancerIPs: 172.18.0.40
-  
+  image:
+    repository: mariadb
+    tag: "10.11"
+    pullPolicy: IfNotPresent
+
+  port: 3306
+
+  volumeClaimTemplate:
+    resources:
+      requests:
+        storage: 100Mi
+    storageClassName: wekafs--sdf-k8s01
+    accessModes:
+      - ReadWriteOnce
+
   myCnf: |
     [mysqld]
     bind-address=0.0.0.0
@@ -34,7 +36,6 @@ spec:
     binlog_format=row
     innodb_autoinc_lock_mode=2
     max_allowed_packet=256M
-
   resources:
     requests:
       cpu: 100m

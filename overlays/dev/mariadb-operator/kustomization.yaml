@@ -1,0 +1,6 @@
+#namespace: mariadb-operator
+namespace: default
+
+resources:
+  - ns.yaml
+  - helm-mariadb-operator.yaml
