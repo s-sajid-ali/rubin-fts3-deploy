@@ -34,7 +34,6 @@ spec:
       containers:
         - name: server
           image: mariadb:10.11
-          #imagePullPolicy: IfNotPresent
 
           env:
             - name: MARIADB_ROOT_PASSWORD
