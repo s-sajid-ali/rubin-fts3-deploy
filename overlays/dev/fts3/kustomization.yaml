@@ -7,30 +7,32 @@ resources:
 - deployment.yaml
 - ingress.yaml
 
-patchesStrategicMerge:
-- grid-certificates-patch.yaml
-- fts3-env-patch.yaml
 
 
-secretGenerator:
 # Config Files 
-- name: fts3-configs
-  files:
+# Service certificate/key
+# Database username/password/connection-string
+secretGenerator:
+- files:
   - fts3config=conf/fts3config
   - fts3restconfig=conf/fts3restconfig
   - fts-msg-monitoring.conf=conf/fts-msg-monitoring.conf
-# Service certificate/key
-- name: fts3-auth
-  files:
+  name: fts3-configs
+- files:
   - hostcert.pem=etc/.secrets/fts3-hostcert.pem
   - hostkey.pem=etc/.secrets/fts3-hostkey.pem
-- name: fts3-ingress-tls-secret 
-  files:
+  name: fts3-auth
+- files:
   - cert=etc/.secrets/fts3-hostcert.pem
   - key=etc/.secrets/fts3-hostkey.pem
-# Database username/password/connection-string
-- name: fts3-db-auth
-  files:
+  name: fts3-ingress-tls-secret
+- files:
   - username=etc/.secrets/fts3db-username
   - password=etc/.secrets/fts3db-fts3-password
   - connstr=etc/.secrets/fts3db-fts3connstr
+  name: fts3-db-auth
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+patches:
+- path: grid-certificates-patch.yaml
+- path: fts3-env-patch.yaml
