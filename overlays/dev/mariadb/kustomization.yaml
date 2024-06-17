@@ -1,57 +1,56 @@
 namespace: fts3-db
 
 resources:
-  - ns.yaml   
-  - service.yaml 
-  - mariadb-configmap.yaml
-  - fts3-mariadb.yaml 
-  - fts3-database.yaml 
-  - fts3-instance.yaml
-  - fts3-grant.yaml
-  - fts3-user.yaml
+- ns.yaml
+- service.yaml
+- mariadb-configmap.yaml
+- fts3-mariadb.yaml
+- fts3-database.yaml
+- fts3-instance.yaml
+- fts3-grant.yaml
+- fts3-user.yaml
 
 configMapGenerator:
-  - name: mariadb-config
-    options:
-      labels:
-        app.kubernetes.io/name: mariadb
-        app.kubernetes.io/component: server
-    literals: []
-  - name: mariadb-init
-    options:
-      labels:
-        app.kubernetes.io/name: mariadb
-        app.kubernetes.io/component: server
-    literals: []
-  - name: mariadb-server
-    options:
-      labels:
-        app.kubernetes.io/name: mariadb
-        app.kubernetes.io/component: server
-    literals:
-      - MARIADB_DATABASE=fts3
-  - name: mariadb-metrics
-    options:
-      labels:
-        app.kubernetes.io/name: mariadb
-        app.kubernetes.io/component: server
-    literals: []
+- name: mariadb-config
+  options:
+    labels:
+      app.kubernetes.io/component: server
+      app.kubernetes.io/name: mariadb
+- name: mariadb-init
+  options:
+    labels:
+      app.kubernetes.io/component: server
+      app.kubernetes.io/name: mariadb
+- literals:
+  - MARIADB_DATABASE=fts3
+  name: mariadb-server
+  options:
+    labels:
+      app.kubernetes.io/component: server
+      app.kubernetes.io/name: mariadb
+- name: mariadb-metrics
+  options:
+    labels:
+      app.kubernetes.io/component: server
+      app.kubernetes.io/name: mariadb
 
 secretGenerator:
-  - name: mariadb-admin
-    options:
-      disableNameSuffixHash: true
-      labels:
-        app.kubernetes.io/name: mariadb
-        app.kubernetes.io/component: server
-    files:
-    - password=etc/.secrets/fts3db-root-password
-  - name: mariadb-user
-    options:
-      disableNameSuffixHash: true
-      labels:
-        app.kubernetes.io/name: mariadb
-        app.kubernetes.io/component: server
-    files:
-    - password=etc/.secrets/fts3db-fts3-password
-    - username=etc/.secrets/fts3db-username
+- files:
+  - password=etc/.secrets/fts3db-root-password
+  name: mariadb-admin
+  options:
+    disableNameSuffixHash: true
+    labels:
+      app.kubernetes.io/component: server
+      app.kubernetes.io/name: mariadb
+- files:
+  - password=etc/.secrets/fts3db-fts3-password
+  - username=etc/.secrets/fts3db-username
+  name: mariadb-user
+  options:
+    disableNameSuffixHash: true
+    labels:
+      app.kubernetes.io/component: server
+      app.kubernetes.io/name: mariadb
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
